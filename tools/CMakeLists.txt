@@ -1,4 +1,4 @@
-set(TOOLLIST)
+set(TOOLLIST testtool)
 
 foreach(TOOL ${TOOLLIST})
   add_subdirectory(${TOOL})
