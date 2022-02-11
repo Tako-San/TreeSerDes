@@ -8,7 +8,7 @@ IntNode::IntNode(int number) : INode::INode(), num(number)
 {
 }
 
-std::string IntNode::stringify()
+std::string IntNode::stringify() const
 {
   return std::to_string(num);
 }
@@ -19,7 +19,7 @@ FloatNode::FloatNode(float number) : INode::INode(), num(number)
 {
 }
 
-std::string FloatNode::stringify()
+std::string FloatNode::stringify() const
 {
   return std::to_string(num);
 }
@@ -43,7 +43,7 @@ static std::size_t replace_all(std::string &inout, std::string_view what,
   return count;
 }
 
-std::string StrNode::stringify()
+std::string StrNode::stringify() const
 {
   auto res = str;
   replace_all(res, "\\", "\\\\");

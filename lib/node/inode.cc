@@ -2,7 +2,7 @@
 
 #include "inode.hh"
 
-std::string INode::dump()
+std::string INode::dump() const
 {
   auto thisPtrDec = reinterpret_cast<uint64_t>(this);
 

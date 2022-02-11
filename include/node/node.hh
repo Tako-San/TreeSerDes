@@ -10,7 +10,7 @@ public:
 
 public:
   IntNode(int number);
-  std::string stringify() override;
+  std::string stringify() const override;
 };
 
 struct FloatNode : public INode
@@ -20,7 +20,7 @@ public:
 
 public:
   FloatNode(float number);
-  std::string stringify() override;
+  std::string stringify() const override;
 };
 
 struct StrNode : public INode
@@ -30,7 +30,7 @@ public:
 
 public:
   StrNode(const std::string &string);
-  std::string stringify() override;
+  std::string stringify() const override;
 };
 
 #endif // __INCLUDE_NODE_NODE_HH__
