@@ -7,7 +7,14 @@
 struct INode
 {
 public:
+  /**
+   * @brief Pointer to parent node
+   */
   INode *parent;
+
+  /**
+   * @brief Vector of pointers to children nodes
+   */
   std::vector<INode *> children;
 
 protected:
@@ -16,12 +23,23 @@ protected:
   }
 
 public:
-  /* dump in dot format */
-  std::string dump();
+  /**
+   * @brief Returns node dump in dot format
+   *
+   * @return std::string
+   */
+  std::string dump() const;
 
-  virtual std::string stringify() = 0;
+  /**
+   * @brief Returns node value as string
+   *
+   * @return std::string
+   */
+  virtual std::string stringify() const = 0;
 
-  /* recursive - not really good */
+  /**
+   * @brief Destroy the INode object recursively.
+   */
   virtual ~INode()
   {
     for (auto child : children)
