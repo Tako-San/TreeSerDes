@@ -1,8 +1,6 @@
 #ifndef __INCLUDE_NODE_NODE_HH__
 #define __INCLUDE_NODE_NODE_HH__
 
-#include <string>
-
 #include "inode.hh"
 
 struct IntNode : public INode
@@ -12,7 +10,7 @@ public:
 
 public:
   IntNode(int number);
-  void dump() override;
+  std::string stringify() override;
 };
 
 struct FloatNode : public INode
@@ -22,7 +20,7 @@ public:
 
 public:
   FloatNode(float number);
-  void dump() override;
+  std::string stringify() override;
 };
 
 struct StrNode : public INode
@@ -32,7 +30,7 @@ public:
 
 public:
   StrNode(const std::string &string);
-  void dump() override;
+  std::string stringify() override;
 };
 
 #endif // __INCLUDE_NODE_NODE_HH__

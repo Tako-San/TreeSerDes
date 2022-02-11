@@ -1,30 +1,34 @@
-#include <iostream>
-
 #include "node.hh"
+
+//==============================================================//
 
 IntNode::IntNode(int number) : INode::INode(), num(number)
 {
 }
 
-void IntNode::dump()
+std::string IntNode::stringify()
 {
-  std::cout << num << std::endl;
+  return std::to_string(num);
 }
+
+//==============================================================//
 
 FloatNode::FloatNode(float number) : INode::INode(), num(number)
 {
 }
 
-void FloatNode::dump()
+std::string FloatNode::stringify()
 {
-  std::cout << num << std::endl;
+  return std::to_string(num);
 }
+
+//==============================================================//
 
 StrNode::StrNode(const std::string &string) : INode::INode(), str(string)
 {
 }
 
-void StrNode::dump()
+std::string StrNode::stringify()
 {
-  std::cout << str << std::endl;
+  return str;
 }
