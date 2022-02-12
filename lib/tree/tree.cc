@@ -1,4 +1,6 @@
+#include <iostream>
 #include <sstream>
+#include <stack>
 
 #include "lexer/lexer.hh"
 #include "node/node.hh"
@@ -8,7 +10,38 @@
 std::string Tree::dump() const
 {
   std::stringstream ss{};
-  ss << "digraph a {" << std::endl << root_->dump() << "}" << std::endl;
+  ss << "digraph a {" << std::endl;
+
+  std::stack<std::pair<INode *, size_t>> recStk{}; // recursion stack
+  recStk.emplace(root_, 0);
+
+  while (!recStk.empty())
+  {
+    auto curPair = recStk.top();
+    recStk.pop();
+
+    auto curNode = curPair.first;
+    auto curIdx = curPair.second;
+
+    auto thisPtrDec = reinterpret_cast<uint64_t>(curNode);
+    if (curIdx == 0)
+      ss << thisPtrDec << " [label=\"" << curNode->stringify() << "\"];" << std::endl;
+
+    auto &curChVec = curNode->children;
+    if (curIdx < curChVec.size())
+    {
+      recStk.emplace(curNode, curIdx + 1);
+
+      auto curChPtr = curChVec[curIdx];
+      auto childPtrDec = reinterpret_cast<uint64_t>(curChPtr);
+      ss << thisPtrDec << " -> " << childPtrDec << ";" << std::endl;
+
+      if (curChPtr != nullptr)
+        recStk.emplace(curChPtr, 0);
+    }
+  }
+
+  ss << "}" << std::endl;
   return ss.str();
 }
 

@@ -23,12 +23,6 @@ protected:
   }
 
 public:
-  /**
-   * @brief Returns node dump in dot format
-   *
-   * @return std::string
-   */
-  std::string dump() const;
 
   std::string serialize() const;
 
