@@ -1,4 +1,4 @@
-set(LIBLIST tree node)
+set(LIBLIST tree node lexer)
 
 foreach(LIB ${LIBLIST})
   add_subdirectory(${LIB})

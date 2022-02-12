@@ -35,6 +35,7 @@ message(STATUS "Collected tools: ${TOOLLIST}")
 foreach(TOOL ${TOOLLIST})
   target_include_directories(${TOOL} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
   target_compile_features(${TOOL} PRIVATE cxx_std_17)
+  target_link_libraries(${TOOL} ${LIBLIST})
 
   # add sanitizers
   target_link_options(${TOOL} PRIVATE "$<$<CXX_COMPILER_ID:GNU>:$<$<CONFIG:Debug>:${DED_SAN_LST}>>")
