@@ -17,23 +17,11 @@ int main()
   Tree tree{root};
   // std::cout << tree.dump();
 
-  std::cout << Tree::serialize(tree) << std::endl;
+  // std::cout << Tree::serialize(tree) << std::endl;
 
   Lexer lexer{std::cin};
 
-  int tok{};
-  do
-  {
-    tok = lexer.getTok();
-
-    if (tok < 0)
-      std::cout << tok << std::endl;
-    else
-    {
-      auto ch = static_cast<char>(tok);
-      std::cout << ch << std::endl;
-    }
-  } while (tok != static_cast<int>(Token::eof));
-
+  auto desTree = Tree::deserialize(std::cin);
+  std::cout << desTree.dump();
   return 0;
 }
