@@ -1,17 +1,15 @@
 cmake_minimum_required(VERSION 3.16)
 project(SerDes)
 
+# Include formatter
 include(cmake/clang_format.cmake)
-
 
 # Build documentation with -DBUILD_DOC
 option(BUILD_DOC "Build documentation" OFF)
 add_subdirectory(docs)
 
-
-# include dir with warnings
+# Include compiler flags
 include(cmake/comp_flags.cmake)
-
 
 # Prepare project libraries
 add_subdirectory(lib)
@@ -20,11 +18,9 @@ message(STATUS "Collected libs: ${LIBLIST}")
 foreach(LIB ${LIBLIST})
   target_include_directories(${LIB} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
   target_include_directories(${LIB} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/${LIB})
-  target_compile_features(${LIB} PRIVATE cxx_std_17)
 
-  # add sanitizers
-  target_link_options(${LIB} PRIVATE "$<$<CXX_COMPILER_ID:GNU>:$<$<CONFIG:Debug>:${DED_SAN_LST}>>")
-  target_compile_options(${LIB} PRIVATE "$<$<CXX_COMPILER_ID:GNU>:$<$<CONFIG:Debug>:${DED_SAN_LST}>>")
+  apply_compiler_flags(${LIB})
+  target_compile_features(${LIB} PRIVATE cxx_std_17)
 endforeach()
 
 
@@ -34,12 +30,10 @@ message(STATUS "Collected tools: ${TOOLLIST}")
 
 foreach(TOOL ${TOOLLIST})
   target_include_directories(${TOOL} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-  target_compile_features(${TOOL} PRIVATE cxx_std_17)
-  target_link_libraries(${TOOL} ${LIBLIST})
 
-  # add sanitizers
-  target_link_options(${TOOL} PRIVATE "$<$<CXX_COMPILER_ID:GNU>:$<$<CONFIG:Debug>:${DED_SAN_LST}>>")
-  target_compile_options(${TOOL} PRIVATE "$<$<CXX_COMPILER_ID:GNU>:$<$<CONFIG:Debug>:${DED_SAN_LST}>>")
+  apply_compiler_flags(${TOOL})
+  target_link_libraries(${TOOL} ${LIBLIST})
+  target_compile_features(${TOOL} PRIVATE cxx_std_17)
 
   set_target_properties(${TOOL}
     PROPERTIES

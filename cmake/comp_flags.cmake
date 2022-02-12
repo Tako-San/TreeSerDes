@@ -1,4 +1,5 @@
-set(DED_SAN
+
+set(SANITIZERS
 -fsanitize=address
 -fsanitize=alignment
 -fsanitize=bool
@@ -22,9 +23,13 @@ set(DED_SAN
 -fsized-deallocation
 )
 
-string(REPLACE " " ";" DED_SAN_LST "${DED_SAN}")
+set(COMMON_WARNINGS
+-Wall
+-Wextra
+-Wpedantic
+)
 
-set(DED_GCC_WARNS
+set(GCC_WARNINGS
 -Weffc++
 -Waggressive-loop-optimizations
 -Wc++0x-compat
@@ -82,4 +87,16 @@ set(DED_GCC_WARNS
 -fno-omit-frame-pointer
 )
 
-string(REPLACE " " ";" DED_GCC_WARNS_LST "${DED_GCC_WARNS}")
+function(apply_compiler_flags TARGET)
+  # Add sanitizers
+  target_link_options(${TARGET} PRIVATE "$<$<CONFIG:Debug>:${SANITIZERS}>")
+  target_compile_options(${TARGET} PRIVATE "$<$<CONFIG:Debug>:${SANITIZERS}>")
+
+  # Compile stuff
+  target_compile_options(${TARGET} PRIVATE "$<$<CONFIG:Debug>:${COMMON_WARNINGS}>")
+  target_compile_options(${TARGET} PRIVATE "$<$<CXX_COMPILER_ID:GNU>:$<$<CONFIG:Debug>:${GCC_WARNINGS}>>")
+endfunction()
+
+string(REPLACE " " ";" DED_SAN_LST "${SANITIZERS}")
+string(REPLACE " " ";" DED_GCC_WARNS_LST "${COMMON_WARNINGS}")
+string(REPLACE " " ";" DED_GCC_WARNS_LST "${GCC_WARNINGS}")
