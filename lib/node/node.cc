@@ -36,6 +36,23 @@ char FloatNode::typeID() const
 
 //==============================================================//
 
+CharNode::CharNode(char character) : INode::INode(), ch(character)
+{
+}
+
+std::string CharNode::stringify() const
+{
+  return {ch};
+}
+
+char CharNode::typeID() const
+{
+  return 'c';
+}
+
+/* Will be supported later */
+//==============================================================//
+
 StrNode::StrNode(const std::string &string) : INode::INode(), str(string)
 {
 }

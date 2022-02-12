@@ -3,7 +3,6 @@
 
 #include "inode.hh"
 
-
 struct IntNode : public INode
 {
 public:
@@ -24,6 +23,17 @@ public:
   char typeID() const override;
 };
 
+struct CharNode : public INode
+{
+public:
+  char ch;
+
+  CharNode(char character);
+  std::string stringify() const override;
+  char typeID() const override;
+};
+
+/* Will be supported later */
 struct StrNode : public INode
 {
 public:
