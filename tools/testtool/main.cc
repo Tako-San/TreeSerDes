@@ -15,7 +15,7 @@ int main()
   fnode->children.push_back(new StrNode{"text"});
 
   Tree tree{root};
-  std::cout << tree.dump();
+  // std::cout << tree.dump();
 
   std::cout << Tree::serialize(tree) << std::endl;
 

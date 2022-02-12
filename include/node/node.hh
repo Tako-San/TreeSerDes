@@ -3,6 +3,7 @@
 
 #include "inode.hh"
 
+
 struct IntNode : public INode
 {
 public:

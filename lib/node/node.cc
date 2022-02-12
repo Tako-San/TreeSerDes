@@ -58,8 +58,6 @@ std::string StrNode::stringify() const
   auto res = str;
   replace_all(res, "\\", "\\\\");
   replace_all(res, "\"", "\\\"");
-  replace_all(res, "[", "\\[");
-  replace_all(res, "]", "\\]");
   return "\"" + res + "\"";
 }
 
