@@ -6,7 +6,6 @@
 #include "node/node.hh"
 #include "tree.hh"
 
-/* TODO: make recursion on stack */
 std::string Tree::dump() const
 {
   std::stringstream ss{};
@@ -45,6 +44,7 @@ std::string Tree::dump() const
   return ss.str();
 }
 
+/* TODO: make recursion on stack */
 std::string Tree::serialize(const Tree &tree)
 {
   return tree.root_->serialize();

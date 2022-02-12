@@ -22,6 +22,7 @@ public:
 
   std::string dump() const;
 
+  /* TODO: make recursion on stack */
   ~Tree()
   {
     delete root_;
