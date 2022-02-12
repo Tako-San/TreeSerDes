@@ -13,6 +13,11 @@ std::string IntNode::stringify() const
   return std::to_string(num);
 }
 
+char IntNode::typeID() const
+{
+  return 'i';
+}
+
 //==============================================================//
 
 FloatNode::FloatNode(float number) : INode::INode(), num(number)
@@ -22,6 +27,11 @@ FloatNode::FloatNode(float number) : INode::INode(), num(number)
 std::string FloatNode::stringify() const
 {
   return std::to_string(num);
+}
+
+char FloatNode::typeID() const
+{
+  return 'f';
 }
 
 //==============================================================//
@@ -50,5 +60,10 @@ std::string StrNode::stringify() const
   replace_all(res, "\"", "\\\"");
   replace_all(res, "[", "\\[");
   replace_all(res, "]", "\\]");
-  return res;
+  return "\"" + res + "\"";
+}
+
+char StrNode::typeID() const
+{
+  return 's';
 }

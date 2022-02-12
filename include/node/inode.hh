@@ -30,6 +30,10 @@ public:
    */
   std::string dump() const;
 
+  std::string serialize() const;
+
+  virtual char typeID() const = 0;
+
   /**
    * @brief Returns node value as string
    *
