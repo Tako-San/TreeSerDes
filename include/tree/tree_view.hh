@@ -3,15 +3,15 @@
 
 #include "node/inode.hh"
 
-class TreeView
-{
-private:
-  INode *curNode_{nullptr};
+// class TreeView
+// {
+// private:
+//   INode *curNode_{nullptr};
 
-public:
-  TreeView(INode *nodePtr) : curNode_(nodePtr)
-  {
-  }
-};
+// public:
+//   TreeView(INode *nodePtr) : curNode_(nodePtr)
+//   {
+//   }
+// };
 
 #endif // __INCLUDE_TREE_TREE_VIEW_HH__
