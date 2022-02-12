@@ -33,15 +33,4 @@ public:
   char typeID() const override;
 };
 
-/* Will be supported later */
-struct StrNode : public INode
-{
-public:
-  std::string str;
-
-  StrNode(const std::string &string);
-  std::string stringify() const override;
-  char typeID() const override;
-};
-
 #endif // __INCLUDE_NODE_NODE_HH__

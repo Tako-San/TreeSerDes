@@ -20,7 +20,7 @@ std::string Tree::serialize(const Tree &tree)
 static INode *handleNode(Lexer &lex)
 {
   auto typeID = lex.typeID();
-  lex.getTok();
+  lex.getTok(); // store node value
 
   switch (typeID)
   {
@@ -42,6 +42,7 @@ Tree Tree::deserialize(std::istream &is)
   int tok{};
 
   bool inChild = false;
+
   do
   {
     tok = lex.getTok();
@@ -51,14 +52,14 @@ Tree Tree::deserialize(std::istream &is)
       lex.getTok(); // colon
 
       auto node = handleNode(lex);
-      if (!inChild)
-        root = node;
-      else
+      if (inChild)
       {
         root->children.push_back(node);
         node->parent = root;
         root = node;
       }
+      else
+        root = node;
     }
 
     if (tok == '[')

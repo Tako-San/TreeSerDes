@@ -30,10 +30,10 @@ private:
 public:
   Lexer(std::istream &istream);
 
-  char typeID();
-  int intVal();
-  char charVal();
-  float floatVal();
+  char typeID() const;
+  int intVal() const;
+  char charVal() const;
+  float floatVal() const;
 
   int getTok();
 

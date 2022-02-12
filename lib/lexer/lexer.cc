@@ -7,22 +7,22 @@ Lexer::Lexer(std::istream &istream) : istream_(&istream)
 {
 }
 
-char Lexer::typeID()
+char Lexer::typeID() const
 {
   return typeID_;
 }
 
-int Lexer::intVal()
+int Lexer::intVal() const
 {
   return intVal_;
 }
 
-char Lexer::charVal()
+char Lexer::charVal() const
 {
   return charVal_;
 }
 
-float Lexer::floatVal()
+float Lexer::floatVal() const
 {
   return floatVal_;
 }
