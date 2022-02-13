@@ -4,7 +4,7 @@
 
 //==============================================================//
 
-IntNode::IntNode(int number) : INode::INode(), num(number)
+IntNode::IntNode(int number) : num(number)
 {
 }
 
@@ -20,7 +20,7 @@ char IntNode::typeID() const
 
 //==============================================================//
 
-FloatNode::FloatNode(float number) : INode::INode(), num(number)
+FloatNode::FloatNode(float number) : num(number)
 {
 }
 
@@ -36,7 +36,7 @@ char FloatNode::typeID() const
 
 //==============================================================//
 
-CharNode::CharNode(char character) : INode::INode(), ch(character)
+CharNode::CharNode(char character) : ch(character)
 {
 }
 

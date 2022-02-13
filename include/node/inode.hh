@@ -7,37 +7,13 @@
 struct INode
 {
 public:
-  /**
-   * @brief Pointer to parent node
-   */
-  INode *parent;
-
-  /**
-   * @brief Vector of pointers to children nodes
-   */
+  INode *parent{nullptr};
   std::vector<INode *> children;
 
-protected:
-  INode() : parent(nullptr)
-  {
-  }
-
 public:
-
   std::string serialize() const;
-
   virtual char typeID() const = 0;
-
-  /**
-   * @brief Returns node value as string
-   *
-   * @return std::string
-   */
   virtual std::string stringify() const = 0;
-
-  /**
-   * @brief Destroy the INode object recursively.
-   */
   virtual ~INode()
   {
     for (auto child : children)
